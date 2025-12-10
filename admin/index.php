@@ -21,7 +21,7 @@ $namaAdmin = isset($_SESSION['admin_nama']) ? $_SESSION['admin_nama'] : $_SESSIO
 
     <p>
         <a href="karyawan/index.php">Kelola karyawan</a>
-        <a href="">Presensi harian</a>
+        <a href="presensi/harian.php">Presensi harian</a>
         <a href="">Presensi bulanan</a>
         <a href="logout.php">Logout</a>
     </p>
