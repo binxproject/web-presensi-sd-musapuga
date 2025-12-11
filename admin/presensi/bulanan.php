@@ -59,7 +59,7 @@ if( empty($errors) && $employeeId > 0 ) {
     $startEscaped = $conn->real_escape_string($startDate);
     $endEscaped = $conn->real_escape_string($endDate);
 
-    $sqlAttendances = "SELECT tanggal, status, jam_masuk, jam_pulang, FROM attendances 
+    $sqlAttendances = "SELECT tanggal, status, jam_masuk, jam_pulang FROM attendances 
                         WHERE employee_id = $employeeId AND tanggal BETWEEN '$startEscaped' AND '$endEscaped' ORDER BY tanggal ASC";
     
     $resultAttendaces = $conn->query($sqlAttendances);
@@ -199,7 +199,49 @@ $namaBulan = [
     <?php endif; ?>
 
     <?php if( empty($errors) && $employeeId  > 0 ) : ?>
-    
+        <h2>
+            Rekap Presensi : <?= htmlspecialchars($namaKaryawan) ?> <br>
+            Bulan <?= $namaBulan[$bulan] ?? $bulan ?> <?= htmlspecialchars($tahun) ?>
+        </h2>
+
+        <p>
+            HADIR : <?= $totalHadir ?> | IZIN : <?= $totalIzin ?> | SAKIT : <?= $totalSakit ?> | ALPA : <?= $totalAlpa ?>
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Hari</th>
+                    <th>Status</th>
+                    <th>Jam Masuk</th>
+                    <th>Jam Pulang</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($laporan as $row) : ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['tanggal']) ?></td>
+                        <td><?= htmlspecialchars($row['hari']) ?></td>
+                        <td><?= htmlspecialchars($row['status']) ?></td>
+                        <td>
+                            <?php if( empty($row['jam_masuk']) ) : ?>
+                                -
+                            <?php else : ?>
+                                <?= htmlspecialchars(substr($row['jam_masuk'], 11, 5)) ?>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <?php if( empty($row['jam_pulang']) ) : ?>
+                                -
+                            <?php else : ?>
+                                <?= htmlspecialchars(substr($row['jam_pulang'], 11, 5)) ?>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     <?php endif; ?>
     
 </body>
