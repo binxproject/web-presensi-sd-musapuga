@@ -39,7 +39,7 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
                         $errors[] = 'Kamu sudah presensi MASUK hari ini.';
                     } else {
                         $attendanceId = (int)$attendance['id'];
-                        $sqlUpdateMasuk = "UPDATE attendances SET jam_masuk = '$now', status = 'HADIR', update_at = NOW() WHERE id =$attendanceId";
+                        $sqlUpdateMasuk = "UPDATE attendances SET jam_masuk = '$now', status = 'HADIR', updated_at = NOW() WHERE id =$attendanceId";
 
                         if( $conn->query($sqlUpdateMasuk) ) {
                             $success = 'Presensi MASUK berhasil diperbarui.';
@@ -84,7 +84,6 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
     }
 }
 
-
 ?>
 
 <!DOCTYPE html>
@@ -94,50 +93,60 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Presensi</title>
     <link rel="stylesheet" href="../src/output.css">
-
-
 </head>
-<body>
-    <h1>Presensi Karyawan</h1>
+<body class="flex items-center justify-center min-h-screen bg-slate-100">
 
-    <?php if( !empty($errors) ) : ?>
-        <div>
-            <ul>
-                <?php foreach( $errors as $err) : ?>
-                    <li><?= htmlspecialchars($err) ?></li>
-                <?php endforeach; ?>
-            </ul>
+    <div class="w-full max-w-md p-6 bg-white shadow-lg rounded-xl">
+        <div class="flex items-center justify-center">
+            <img src="../assets/images/logo.webp" alt="Logo SD Musapuga" class="w-[120px] h-[120px]">
         </div>
-    <?php endif; ?>
+        
+        <h1 class="mb-1 text-2xl font-semibold text-center text-slate-800">Presensi Karyawan</h1>
+        <p class="mb-6 text-sm text-center text-slate-500">Silahkan masukkan NIK dan pilih jenis presensi.</p>
 
-    <?php if( $success !== '' ) : ?>
-        <div>
-            <?= htmlspecialchars($success) ?>
-        </div>
-    <?php endif; ?>
+        <?php if( !empty($errors) ) : ?>
+            <div class="px-3 py-2 mb-4 text-sm border rounded-lg border-rose-200 bg-rose-50 text-rose-700">
+                <ul class="list-disc list-inside">
+                    <?php foreach( $errors as $err) : ?>
+                        <li><?= htmlspecialchars($err) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
 
-    <form method="post" action="">
-        <div>
-            <label for="nik">NIK</label>
-            <input type="text" name="nik" id="nik" required>
-        </div>
+        <?php if( $success !== '' ) : ?>
+            <div class="px-3 py-2 mb-4 text-sm border rounded-lg border-emerald-200 bg-emerald-50 text-emerald-700">
+                <ul class="list-disc list-inside">
+                    <li><?= htmlspecialchars($success) ?></li>
+                </ul>
+            </div>
+        <?php endif; ?>
 
-        <div>
-            <label for="">Jenis Presensi</label>
-            <label for="masuk">
-                <input type="radio" id="masuk" name="tipe" value="masuk" checked>
-                <span>Masuk</span>
-            </label>
-            <label for="pulang">
-                <input type="radio" id="pulang" name="tipe" value="pulang">
-                <span>Pulang</span>
-            </label>
-        </div>
+        <form method="post" action="" class="space-y-5">
+            <div>
+                <label for="nik" class="block mb-1 text-sm font-medium text-slate-700">NIK</label>
+                <input type="text" name="nik" id="nik" required placeholder="Masukkan NIK anda" class="w-full px-3 py-2 text-sm border rounded-lg border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:text-slate-500">
+            </div>
 
-        <div>
-            <button type="submit">Kirim Presensi</button>
-        </div>
-    </form>
+            <div>
+                <span class="block mb-1 text-sm font-medium text-slate-700">Jenis Presensi</span>
+                <label for="masuk" class="inline-flex items-center gap-1">
+                    <input type="radio" id="masuk" name="tipe" value="masuk" checked>
+                    <span>Masuk</span>
+                </label>
+                <label for="pulang" class="inline-flex items-center gap-1">
+                    <input type="radio" id="pulang" name="tipe" value="pulang">
+                    <span>Pulang</span>
+                </label>
+            </div>
+
+            <div class="flex justify-end">
+                <button type="submit" class="px-4 py-2.5 text-white text-sm rounded-lg transition-colors bg-blue-600 hover:bg-blue-700 active:bg-blue-800">Kirim Presensi</button>
+            </div>
+        </form>
+        <p class="mt-4 text-xs text-center text-slate-400">Presensi hanya dapat dilakukan sekali untuk MASUK dan sekali untuk PULANG setiap hari.</p>
+    </div>
+    
 
 
 </body>
