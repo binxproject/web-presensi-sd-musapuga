@@ -17,9 +17,6 @@ $namaAdmin = isset($_SESSION['admin_nama']) ? $_SESSION['admin_nama'] : $_SESSIO
     <header class="bg-white border-b shadow-sm border-slate-200">
         <div class="flex items-center justify-between max-w-5xl px-4 py-3 mx-auto">
             <div class="flex items-center gap-2">
-                <!-- <div class="flex items-center justify-center w-8 h-8 text-sm font-bold text-white bg-blue-600 rounded-full">
-                    SD
-                </div> -->
                 <img src="../assets/images/logo.webp" alt="Logo SD Musapuga" class="w-[40px] h-[40px]">
                 <div class="leading-tight">
                     <div class="text-base font-semibold text-slate-800">Panel Admin Presensi</div>
@@ -28,7 +25,6 @@ $namaAdmin = isset($_SESSION['admin_nama']) ? $_SESSION['admin_nama'] : $_SESSIO
                 
             </div>
             <a href="logout.php" class="text-sm leading-tight text-rose-700 hover:underline">Logout</a>
-            
         </div>
     </header>
 
