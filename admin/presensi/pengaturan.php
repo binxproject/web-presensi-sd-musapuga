@@ -90,68 +90,103 @@ $namaAdmin = isset($_SESSION['admin_nama']) ?? $_SESSION['admin_username'] ?? 'A
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pengaturan Presensi Manual</title>
+    <link rel="stylesheet" href="../../src/output.css">
 </head>
-<body>
-    <h1>Pengaturan Presensi Manual</h1>
-    <p>Halo, <?= htmlspecialchars($namaAdmin) ?></p>
-
-    <p><a href="">Kembali ke dashboard</a> | <a href="">Lihat Laporan Harian</a></p>
-
-    <?php if( !empty($errors) ) : ?>
-        <div>
-            <ul>
-                <?php foreach( $errors as $error ) : ?>
-                    <li><?= htmlspecialchars($error) ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    <?php endif; ?>
-
-    <?php if( $success !== '' ) : ?>
-        <div>
-            <?= htmlspecialchars($success) ?>
-        </div>
-    <?php endif; ?>
-
-    <form method="post" action="">
-        <div>
-            <label for="">Karyawan</label>
-            <select name="employee_id" id="employee_id" required>
-                <option value="">Pilih Karyawan</option>
-                <?php foreach( $employees as $employee ) : ?>
-                    <option value="<?= (int)$employee['id'] ?>" <?= ($employeeId == $employee['id']) ? 'selected' : '' ?>>
-                        <?= htmlspecialchars($employee['nik'] . ' - ' . $employee['nama']) ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-
-        <div>
-            <label for="tanggal">Tanggal : </label>
-            <input type="date" id="tanggal" name="tanggal" value="<?= htmlspecialchars($tanggal) ?>" required>
-        </div>
-
-        <div>
-            <label>Status Presensi</label>
-            <label>
-                <input type="radio" name="status" value="HADIR" <?= $status === 'HADIR' ? 'checked' : '' ?>>
-                <span>HADIR</span>
-            </label>
-            <label>
-                <input type="radio" name="status" value="IZIN" <?= $status === 'IZIN' ? 'checked' : '' ?>>
-                <span>IZIN</span>
-            </label>
-            <label>
-                <input type="radio" name="status" value="SAKIT" <?= $status === 'SAKIT' ? 'checked' : '' ?>>
-                <span>SAKIT</span>
-            </label>
-            <div>
-                <label for="">Keterangan</label>
-                <textarea name="keterangan" id="keterangan"><?= htmlspecialchars($keterangan) ?></textarea>
+<body class="min-h-screen bg-slate-100">
+    <header class="bg-white border-b shadow-sm border-slate-200">
+        <div class="flex items-center justify-between max-w-5xl px-4 py-3 mx-auto">
+            <div class="flex items-center gap-2">
+                <img src="../../assets/images/logo.webp" alt="Logo SD Musapuga" class="w-[40px] h-[40px]">
+                <div class="leading-tight">
+                    <div class="text-base font-semibold text-slate-800">Panel Admin Presensi</div>
+                    <div class="text-sm text-slate-500">SD Musapuga</div>
+                </div>
             </div>
-            <button type="submit">Simpan</button>
+            
+            <div class="flex items-center gap-2">
+                <a href="../index.php" class="text-sm leading-tight text-blue-700 hover:underline">Dashboard</a>
+                <a href="../logout.php" class="text-sm leading-tight text-rose-700 hover:underline">Logout</a>
+            </div>
         </div>
-    </form>
+    </header>
+
+    <main class="max-w-5xl px-4 py-6 mx-auto">
+        <section class="mb-4">
+            <h1 class="text-xl font-semibold md:text-2xl text-slate-800">Atur Presensi Manual</h1>
+            <p class="mt-1 text-sm text-slate-500">Gunakan halaman ini untuk memperbaiki atau menginput presensi secara manual (hadir, izin, sakit).</p>
+        </section>
+
+        <?php if( !empty($errors) ) : ?>
+            <section class="mb-3">
+                 <div class="px-3 py-2 text-sm border rounded-lg border-rose-200 bg-rose-50 text-rose-700">
+                    <ul class="space-y-1 list-disc list-inside">
+                        <?php foreach( $errors as $error ) : ?>
+                            <li><?= htmlspecialchars($error) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </section>
+        <?php endif; ?>
+        
+        <?php if( $success !== '' ) : ?>
+            <section class="mb-3">
+                <div class="px-3 py-2 text-sm border rounded-lg border-emerald-200 bg-emerald-50 text-emerald-700">
+                    <?= htmlspecialchars($success) ?>
+                </div>
+            </section>
+        <?php endif; ?>
+
+        <section class="p-5 bg-white border shadow-sm border-slate-200 rounded-2xl">
+            <form method="post" action="" class="space-y-4">
+                <div>
+                    <label for="employee_id" class="block mb-1 text-sm font-medium text-slate-700">Karyawan</label>
+                    <select name="employee_id" id="employee_id" required class="w-full px-3 py-2 text-sm border rounded-lg border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:text-slate-500">
+                        <option value="">Pilih Karyawan</option>
+                        <?php foreach( $employees as $employee ) : ?>
+                            <option value="<?= (int)$employee['id'] ?>" <?= ($employeeId == $employee['id']) ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($employee['nik'] . ' - ' . $employee['nama']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="tanggal" class="block mb-1 text-sm font-medium text-slate-700">Tanggal : </label>
+                    <input type="date" id="tanggal" name="tanggal" value="<?= htmlspecialchars($tanggal) ?>" required class="w-full px-3 py-2 text-sm border rounded-lg border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:text-slate-500">
+                </div>
+
+                <div>
+                    <label class="block mb-1 text-sm font-medium text-slate-700">Status Presensi</label>
+                    <div class="flex items-center gap-4 text-sm text-slate-700">
+                        <label class="inline-flex items-center gap-1">
+                            <input type="radio" name="status" value="HADIR" <?= $status === 'HADIR' ? 'checked' : '' ?>>
+                            <span>HADIR</span>
+                        </label>
+                        <label class="inline-flex items-center gap-1">
+                            <input type="radio" name="status" value="IZIN" <?= $status === 'IZIN' ? 'checked' : '' ?>>
+                            <span>IZIN</span>
+                        </label>
+                        <label class="inline-flex items-center gap-1">
+                            <input type="radio" name="status" value="SAKIT" <?= $status === 'SAKIT' ? 'checked' : '' ?>>
+                            <span>SAKIT</span>
+                        </label>
+                    </div>
+                    
+                    <div class="mt-2">
+                        <label for="keterangan" class="block mb-1 text-sm font-medium text-slate-700">Keterangan</label>
+                        <textarea name="keterangan" id="keterangan" class="w-full px-3 py-2 text-sm border rounded-lg border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"><?= htmlspecialchars($keterangan) ?></textarea>
+                    </div>
+                    <button type="submit" class="mt-2 px-4 py-2.5 text-white text-sm rounded-lg transition-colors bg-blue-600 hover:bg-blue-700 active:bg-blue-800">Simpan</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    
+    
+
+    
+
+    
 </body>
 </html>

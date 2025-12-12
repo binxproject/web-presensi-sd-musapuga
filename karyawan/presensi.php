@@ -130,19 +130,21 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 
             <div>
                 <span class="block mb-1 text-sm font-medium text-slate-700">Jenis Presensi</span>
-                <label for="masuk" class="inline-flex items-center gap-1">
-                    <input type="radio" id="masuk" name="tipe" value="masuk" checked>
-                    <span>Masuk</span>
-                </label>
-                <label for="pulang" class="inline-flex items-center gap-1">
-                    <input type="radio" id="pulang" name="tipe" value="pulang">
-                    <span>Pulang</span>
-                </label>
+                <div class="flex items-center gap-4 text-sm text-slate-700">
+                    <label for="masuk" class="inline-flex items-center gap-1">
+                        <input type="radio" id="masuk" name="tipe" value="masuk" checked>
+                        <span>Masuk</span>
+                    </label>
+                    <label for="pulang" class="inline-flex items-center gap-1">
+                        <input type="radio" id="pulang" name="tipe" value="pulang">
+                        <span>Pulang</span>
+                    </label>
+                </div>
+                
             </div>
 
-            <div class="flex justify-end">
-                <button type="submit" class="px-4 py-2.5 text-white text-sm rounded-lg transition-colors bg-blue-600 hover:bg-blue-700 active:bg-blue-800">Kirim Presensi</button>
-            </div>
+            <button type="submit" class="px-4 py-2.5 text-white text-sm rounded-lg transition-colors bg-blue-600 hover:bg-blue-700 active:bg-blue-800">Kirim Presensi</button>
+            
         </form>
         <p class="mt-4 text-xs text-center text-slate-400">Presensi hanya dapat dilakukan sekali untuk MASUK dan sekali untuk PULANG setiap hari.</p>
     </div>

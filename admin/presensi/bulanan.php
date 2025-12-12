@@ -92,16 +92,19 @@ if( empty($errors) && $employeeId > 0 ) {
         if( isset($mapPresensi[$tanggalString]) ) {
             $attendance = $mapPresensi[$tanggalString];
 
-            if( $attendance['status'] === 'IZIN' ) {
+            if( $attendance['status'] === 'HADIR' ) {
+                $status = 'HADIR';
+                $totalHadir++;
+
+            } elseif( $attendance['status'] === 'IZIN' ) {
                 $status ='IZIN';
                 $totalIzin++;
             } elseif( $attendance['status'] === 'SAKIT' ) {
                 $status = 'SAKIT';
                 $totalSakit++;
-            } else {
-                $status = 'HADIR';
-                $totalHadir++;
-            }
+            } 
+            
+            
 
             $jamMasuk = $attendance['jam_masuk'];
             $jamPulang = $attendance['jam_pulang'];
@@ -147,102 +150,162 @@ $namaBulan = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Laporan Presensi Bulanan</title>
+    <link rel="stylesheet" href="../../src/output.css">
 </head>
-<body>
-
-    <h1>Laporan Presensi Bulanan</h1>
-    <p>Halo, <?= htmlspecialchars($namaAdmin) ?></p>
-
-    <p><a href="">Kembali ke Dashboard</a> | <a href="">Laporan Harian</a> | <a href="">Atur Presensi Manual</a></p>
-
-    <form action="">
-        <div>
-            <label for="employee_id">Karyawan</label>
-            <select name="employee_id" id="employee_id" required>
-                <option value="">Pilih Karyawan</option>
-                <?php foreach($employees as $employee) : ?>
-                    <option value="<?= (int)$employee['id'] ?>" <?= ($employeeId == $employee['id']) ? 'selected' : '' ?>>
-                        <?= htmlspecialchars($employee['nik'] . ' - ' . $employee['nama']) ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+<body class="min-h-screen bg-slate-100">
+    <header class="bg-white border-b shadow-sm border-slate-200">
+        <div class="flex items-center justify-between max-w-5xl px-4 py-3 mx-auto">
+            <div class="flex items-center gap-2">
+                <img src="../../assets/images/logo.webp" alt="Logo SD Musapuga" class="w-[40px] h-[40px]">
+                <div class="leading-tight">
+                    <div class="text-base font-semibold text-slate-800">Panel Admin Presensi</div>
+                    <div class="text-sm text-slate-500">SD Musapuga</div>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <a href="../index.php" class="text-sm leading-tight text-blue-700 hover:underline">Dashboard</a>
+                <a href="../logout.php" class="text-sm leading-tight text-rose-700 hover:underline">Logout</a>
+            </div>
         </div>
+    </header>
 
-        <div>
-            <label for="bulan">Bulan</label>
-            <select name="bulan" id="bulan">
-                <?php foreach($namaBulan as $num => $label) : ?>
-                    <option value="<?= $num ?>" <?= ($bulan == $num) ? 'selected' : '' ?>>
-                        <?= $label ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        </div>
+    <main class="max-w-5xl px-4 py-6 mx-auto">
+        <section class="mb-4">
+            <h1 class="mt-2 text-xl font-semibold md:text-2xl text-slate-800">Presensi Bulanan</h1>
+            <p class="mt-1 text-sm text-slate-500">Lihat rekap presensi per karyawan dalam satu bulan.</p>
+        </section>
 
-        <div>
-            <label for="tahun">Tahun</label>
-            <input type="number" name="tahun" id="tahun" value="<?= htmlspecialchars($tahun) ?>" min="2000" max="2100">
-        </div>
+        <section class="mb-4">
+            <form method="get" action="" class="grid gap-3 md:grid-cols-4 md:items-end">
+                <div class="md:col-span-2">
+                    <label for="employee_id" class="block mb-1 text-sm font-medium text-slate-700">Karyawan</label>
+                    <select name="employee_id" id="employee_id" required class="w-full px-3 py-2 text-sm border rounded-lg border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="">Pilih Karyawan</option>
+                        <?php foreach($employees as $employee) : ?>
+                            <option value="<?= (int)$employee['id'] ?>" <?= ($employeeId == $employee['id']) ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($employee['nik'] . ' - ' . $employee['nama']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
 
-        <button type="submit" name="submit" value="1">Tampilkan</button>
-    </form>
+                <div>
+                    <label for="bulan" class="block mb-1 text-sm font-medium text-slate-700">Bulan</label>
+                    <select name="bulan" id="bulan" class="w-full px-3 py-2 text-sm border rounded-lg border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <?php foreach($namaBulan as $num => $label) : ?>
+                            <option value="<?= $num ?>" <?= ($bulan == $num) ? 'selected' : '' ?>>
+                                <?= $label ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
 
-    <?php if( !empty($errors) ) : ?>
-        <div>
-            <ul>
-                <?php foreach($errors as $error) : ?>
-                    <li><?= htmlspecialchars($error) ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    <?php endif; ?>
+                <div>
+                    <label for="tahun" class="block mb-1 text-sm font-medium text-slate-700">Tahun</label>
+                    <input type="number" name="tahun" id="tahun" value="<?= htmlspecialchars($tahun) ?>" min="2000" max="2100" class="w-full px-3 py-2 text-sm border rounded-lg border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:text-slate-500">
+                </div>
 
-    <?php if( empty($errors) && $employeeId  > 0 ) : ?>
-        <h2>
-            Rekap Presensi : <?= htmlspecialchars($namaKaryawan) ?> <br>
-            Bulan <?= $namaBulan[$bulan] ?? $bulan ?> <?= htmlspecialchars($tahun) ?>
-        </h2>
+                <button type="submit" name="submit" value="1" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg shadow-sm hover:bg-blue-700">Tampilkan</button>
+            </form>
+        </section>
 
-        <p>
-            HADIR : <?= $totalHadir ?> | IZIN : <?= $totalIzin ?> | SAKIT : <?= $totalSakit ?> | ALPA : <?= $totalAlpa ?>
-        </p>
+        <?php if( !empty($errors) ) : ?>
+            <div class="px-3 py-2 text-sm border rounded-lg border-rose-200 bg-rose-50 text-rose-700">
+                <ul class="space-y-1 list-disc list-inside">
+                    <?php foreach($errors as $error) : ?>
+                        <li><?= htmlspecialchars($error) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Tanggal</th>
-                    <th>Hari</th>
-                    <th>Status</th>
-                    <th>Jam Masuk</th>
-                    <th>Jam Pulang</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($laporan as $row) : ?>
+
+        <?php if( empty($errors) && $employeeId  > 0 ) : ?>
+            <section class="mb-4">
+                <div class="p-4 bg-white border shadow-sm border-salte-200 rounded-2xl">
+                    <h2 class="mb-1 text-sm font-semibold text-slate-800">
+                        Rekap Presensi : <?= htmlspecialchars($namaKaryawan) ?> <br>
+                    </h2>
+                    <p class="mb-3 text-xs text-slate-500">Bulan <?= $namaBulan[$bulan] ?? $bulan ?> <?= htmlspecialchars($tahun) ?></p>
+                    <div class="grid gap-3 md:grid-cols-4">
+                        <div class="p-3 text-center border bg-emerald-50 border-emerald-100 rounded-xl">
+                            <div class="text-xs text-slate-500">Hadir</div>
+                            <div class="text-xl font-semibold text-emerald-600"><?= $totalHadir ?></div>
+                        </div>
+                        <div class="p-3 text-center border bg-amber-50 border-amber-100 rounded-xl">
+                            <div class="text-xs text-slate-500">Izin</div>
+                            <div class="text-xl font-semibold text-amber-600"><?= $totalIzin ?></div>
+                        </div>
+                        <div class="p-3 text-center border bg-sky-50 border-sky-100 rounded-xl">
+                            <div class="text-xs text-slate-500">Sakit</div>
+                            <div class="text-xl font-semibold text-emerskyald-600"><?= $totalSakit ?></div>
+                        </div>
+                        <div class="p-3 text-center border bg-rose-50 border-rose-100 rounded-xl">
+                            <div class="text-xs text-slate-500">Alpa</div>
+                            <div class="text-xl font-semibold text-rose-600"><?= $totalAlpa ?></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?>
+
+        <section class="overflow-hidden bg-white border shadow-sm border-slate-200 rounded-2xl ">
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                <thead class="border-b bg-slate-50 border-slate-200">
                     <tr>
-                        <td><?= htmlspecialchars($row['tanggal']) ?></td>
-                        <td><?= htmlspecialchars($row['hari']) ?></td>
-                        <td><?= htmlspecialchars($row['status']) ?></td>
-                        <td>
-                            <?php if( empty($row['jam_masuk']) ) : ?>
-                                -
-                            <?php else : ?>
-                                <?= htmlspecialchars(substr($row['jam_masuk'], 11, 5)) ?>
-                            <?php endif; ?>
-                        </td>
-                        <td>
-                            <?php if( empty($row['jam_pulang']) ) : ?>
-                                -
-                            <?php else : ?>
-                                <?= htmlspecialchars(substr($row['jam_pulang'], 11, 5)) ?>
-                            <?php endif; ?>
-                        </td>
+                        <th class="px-4 py-2 text-xs font-semibold tracking-wide text-left uppercase text-slate-500">Tanggal</th>
+                        <th class="px-4 py-2 text-xs font-semibold tracking-wide text-left uppercase text-slate-500">Hari</th>
+                        <th class="px-4 py-2 text-xs font-semibold tracking-wide text-left uppercase text-slate-500">Status</th>
+                        <th class="px-4 py-2 text-xs font-semibold tracking-wide text-left uppercase text-slate-500">Jam Masuk</th>
+                        <th class="px-4 py-2 text-xs font-semibold tracking-wide text-left uppercase text-slate-500">Jam Pulang</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php endif; ?>
+                </thead>
+                <tbody>
+                    <?php foreach($laporan as $row) : ?>
+                        <tr class="border-t border-slate-100 hover:bg-slate-50/80">
+                            <td class="px-4 py-2 text-slate-700"><?= htmlspecialchars($row['tanggal']) ?></td>
+                            <td class="px-4 py-2 text-slate-700"><?= htmlspecialchars($row['hari']) ?></td>
+                            <td class="px-4 py-2">
+                                <?php if( $row['status'] === 'HADIR' ) : ?>
+                                    <span class="inline-flex items-center rounded-full bg-emerald-50 text-emerald-600 text-xs px-2 py-0.5 border border-emerald-100">Hadir</span>
+                                <?php elseif( $row['status'] === 'IZIN' ) : ?>
+                                    <span class="inline-flex items-center rounded-full bg-amber-50 text-amber-600 text-xs px-2 py-0.5 border border-amber-100">Izin</span>
+                                <?php elseif( $row['status'] === 'SAKIT' ) : ?>
+                                    <span class="inline-flex items-center rounded-full bg-sky-50 text-sky-600 text-xs px-2 py-0.5 border border-sky-100">Sakit</span>
+                                <?php else : ?>
+                                    <span class="inline-flex items-center rounded-full bg-rose-50 text-rose-600 text-xs px-2 py-0.5 border border-rose-100">Alpa</span>
+                                <?php endif; ?>
+                            </td>
+                            <td class="px-4 py-2 text-slate-700"><?= htmlspecialchars($row['status']) ?></td>
+                            <td class="px-4 py-2 text-slate-700">
+                                <?php if( empty($row['jam_masuk']) ) : ?>
+                                    -
+                                <?php else : ?>
+                                    <?= htmlspecialchars(substr($row['jam_masuk'], 11, 5)) ?>
+                                <?php endif; ?>
+                            </td>
+                            <td class="px-4 py-2 text-slate-700">
+                                <?php if( empty($row['jam_pulang']) ) : ?>
+                                    -
+                                <?php else : ?>
+                                    <?= htmlspecialchars(substr($row['jam_pulang'], 11, 5)) ?>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            </div>
+        </section>
+        
+    </main>
+   
+    
+
+    
     
 </body>
 </html>
