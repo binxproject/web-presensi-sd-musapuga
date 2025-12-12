@@ -45,7 +45,6 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -54,11 +53,10 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Admin</title>
-    <link rel="stylesheet" href="../src/output.css">
-
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon.png">
+    <link rel="stylesheet" href="../assets/css/output.min.css">
 </head>
 <body class="flex items-center justify-center min-h-screen bg-slate-100">
-
     <div class="w-full max-w-md p-6 bg-white shadow-lg rounded-xl">
         <div class="flex items-center justify-center">
             <img src="../assets/images/logo.webp" alt="Logo SD Musapuga" class="w-[120px] h-[120px]">
@@ -91,9 +89,5 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
             </div>
         </form>
     </div>
-    
-
-    
-    
 </body>
 </html>

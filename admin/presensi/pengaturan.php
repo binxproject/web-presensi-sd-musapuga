@@ -82,7 +82,6 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 }
 
 $namaAdmin = isset($_SESSION['admin_nama']) ?? $_SESSION['admin_username'] ?? 'Admin';
-
 ?>
 
 <!DOCTYPE html>
@@ -91,7 +90,8 @@ $namaAdmin = isset($_SESSION['admin_nama']) ?? $_SESSION['admin_username'] ?? 'A
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengaturan Presensi Manual</title>
-    <link rel="stylesheet" href="../../src/output.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/favicon.png">
+    <link rel="stylesheet" href="../../assets/css/output.min.css">
 </head>
 <body class="min-h-screen bg-slate-100">
     <header class="bg-white border-b shadow-sm border-slate-200">
@@ -103,7 +103,6 @@ $namaAdmin = isset($_SESSION['admin_nama']) ?? $_SESSION['admin_username'] ?? 'A
                     <div class="text-sm text-slate-500">SD Musapuga</div>
                 </div>
             </div>
-            
             <div class="flex items-center gap-2">
                 <a href="../index.php" class="text-sm leading-tight text-blue-700 hover:underline">Dashboard</a>
                 <a href="../logout.php" class="text-sm leading-tight text-rose-700 hover:underline">Logout</a>
@@ -182,11 +181,5 @@ $namaAdmin = isset($_SESSION['admin_nama']) ?? $_SESSION['admin_username'] ?? 'A
             </form>
         </section>
     </main>
-    
-    
-
-    
-
-    
 </body>
 </html>

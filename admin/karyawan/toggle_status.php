@@ -32,5 +32,4 @@ if( $conn->query($sqlUpdate) ) {
     header('Location: index.php?message=' . urlencode($pesan));
     exit;
 }
-
 ?>

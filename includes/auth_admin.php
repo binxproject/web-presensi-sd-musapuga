@@ -7,6 +7,4 @@ if( !isset($_SESSION['admin_id']) ) {
     header('Location: /web-presensi-sd-musapuga/admin/login.php');
     exit;
 }
-
-
 ?>

@@ -61,7 +61,8 @@ $namaAdmin = $_SESSION['admin_nama'] ?? $_SESSION['admin_username'] ?? 'Admin';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Karyawan</title>
-    <link rel="stylesheet" href="../../src/output.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/favicon.png">
+    <link rel="stylesheet" href="../../assets/css/output.min.css">
 </head>
 <body class="min-h-screen bg-slate-100">
     <header class="bg-white border-b shadow-sm border-slate-200">
@@ -130,17 +131,8 @@ $namaAdmin = $_SESSION['admin_nama'] ?? $_SESSION['admin_username'] ?? 'Admin';
                 <div class="flex flex-wrap items-center gap-2 pt-2">
                     <button type="submit" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg shadow-sm hover:bg-blue-700">Simpan</button>
                 </div>
-                
             </form>
         </section>
-
     </main>
-
-    
-
-    
-
-
-
 </body>
 </html>

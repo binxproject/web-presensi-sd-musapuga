@@ -17,7 +17,6 @@ if( $result ) {
 $namaAdmin = $_SESSION['admin_nama'] ?? $_SESSION['admin_username'] ?? 'Admin';
 
 $message = isset($_GET['message']) ? $_GET['message'] : '';
-
 ?>
 
 <!DOCTYPE html>
@@ -26,8 +25,8 @@ $message = isset($_GET['message']) ? $_GET['message'] : '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Karyawan</title>
-    <link rel="stylesheet" href="../../src/output.css">
-
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/favicon.png">
+    <link rel="stylesheet" href="../../assets/css/output.min.css">
 </head>
 <body class="min-h-screen bg-slate-100">
     <header class="bg-white border-b shadow-sm border-slate-200">
@@ -41,9 +40,8 @@ $message = isset($_GET['message']) ? $_GET['message'] : '';
             </div>
             <div class="flex items-center gap-2">
                 <a href="../index.php" class="text-sm leading-tight text-blue-700 hover:underline">Dashboard</a>
-                <a href="logout.php" class="text-sm leading-tight text-rose-700 hover:underline">Logout</a>
+                <a href="../logout.php" class="text-sm leading-tight text-rose-700 hover:underline">Logout</a>
             </div>
-            
         </div>
     </header>
     
@@ -111,15 +109,7 @@ $message = isset($_GET['message']) ? $_GET['message'] : '';
                     </tbody>
                 </table>
             </div>
-            
         </section>
-        
     </main>
-    
-
-    
-
-    
-    
 </body>
 </html>

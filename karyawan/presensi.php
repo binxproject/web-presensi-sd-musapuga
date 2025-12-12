@@ -83,7 +83,6 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -91,11 +90,11 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Presensi</title>
-    <link rel="stylesheet" href="../src/output.css">
+    <title>Presensi Karyawan</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon.png">
+    <link rel="stylesheet" href="../assets/css/output.min.css">
 </head>
 <body class="flex items-center justify-center min-h-screen bg-slate-100">
-
     <div class="w-full max-w-md p-6 bg-white shadow-lg rounded-xl">
         <div class="flex items-center justify-center">
             <img src="../assets/images/logo.webp" alt="Logo SD Musapuga" class="w-[120px] h-[120px]">
@@ -143,13 +142,13 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
                 
             </div>
 
-            <button type="submit" class="px-4 py-2.5 text-white text-sm rounded-lg transition-colors bg-blue-600 hover:bg-blue-700 active:bg-blue-800">Kirim Presensi</button>
+            <div class="flex justify-between">
+                <button type="submit" class="px-4 py-2.5 text-white text-sm rounded-lg transition-colors bg-blue-600 hover:bg-blue-700 active:bg-blue-800">Kirim Presensi</button>
+                <a href="../admin/login.php" class="px-4 py-2.5 text-slate-800 text-sm rounded-lg border border-blue-600 transition-colors hover:bg-blue-100 active:bg-blue-200">Login Admin</a>
+            </div>
             
         </form>
         <p class="mt-4 text-xs text-center text-slate-400">Presensi hanya dapat dilakukan sekali untuk MASUK dan sekali untuk PULANG setiap hari.</p>
     </div>
-    
-
-
 </body>
 </html>

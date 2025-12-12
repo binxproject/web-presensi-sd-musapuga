@@ -2,7 +2,6 @@
 require_once __DIR__ . '/../includes/auth_admin.php';
 
 $namaAdmin = isset($_SESSION['admin_nama']) ? $_SESSION['admin_nama'] : $_SESSION['admin_username'];
-
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +10,8 @@ $namaAdmin = isset($_SESSION['admin_nama']) ? $_SESSION['admin_nama'] : $_SESSIO
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin</title>
-    <link rel="stylesheet" href="../src/output.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon.png">
+    <link rel="stylesheet" href="../assets/css/output.min.css">
 </head>
 <body class="min-h-screen bg-slate-100">
     <header class="bg-white border-b shadow-sm border-slate-200">
@@ -22,7 +22,6 @@ $namaAdmin = isset($_SESSION['admin_nama']) ? $_SESSION['admin_nama'] : $_SESSIO
                     <div class="text-base font-semibold text-slate-800">Panel Admin Presensi</div>
                     <div class="text-sm text-slate-500">SD Musapuga</div>
                 </div>
-                
             </div>
             <a href="logout.php" class="text-sm leading-tight text-rose-700 hover:underline">Logout</a>
         </div>
@@ -83,7 +82,5 @@ $namaAdmin = isset($_SESSION['admin_nama']) ? $_SESSION['admin_nama'] : $_SESSIO
             </div>
         </section>
     </main>
-    
-    
 </body>
 </html>
