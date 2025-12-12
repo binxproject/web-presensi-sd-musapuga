@@ -1,9 +1,27 @@
 # Sistem Presensi SD Musapuga
 
+[Live Demo](https://presensi-demo.free.nf/)
+
 Aplikasi web sederhana untuk mengelola presensi karyawan (guru dan staf) SD Musapuga.
 Karyawan melalakukan presensi dengan NIK, dan admin dapat mengelola data karyawan serta melihat laporan kehadiran harian dan bulanan.
 
 ---
+
+## Tampilan Aplikasi
+
+### Halaman Presensi Karyawan
+![Halaman Presensi Karyawan](docs/screenshot/presensi-karyawan.png)
+
+### Login & Dashboard Admin
+![Halaman Login Admin](docs/screenshot/login-admin.png)
+![Dashboard Admin](docs/screenshot/dashboard-admin.png)
+
+### Kelola Karyawan
+![Daftar Karyawan](docs/screenshot/list-karyawan.png)
+
+### Laporan Presensi
+![Presensi Harian](docs/screenshot/presensi-harian.png)
+![Presensi Bulanan](docs/screenshot/presensi-bulanan.png)
 
 ## Fitur
 
