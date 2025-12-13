@@ -10,18 +10,18 @@ Karyawan melalakukan presensi dengan NIK, dan admin dapat mengelola data karyawa
 ## Tampilan Aplikasi
 
 ### Halaman Presensi Karyawan
-![Halaman Presensi Karyawan](docs/screenshot/presensi-karyawan.png)
+![Halaman Presensi Karyawan](docs/screenshot/01-presensi-karyawan.png)
 
 ### Login & Dashboard Admin
-![Halaman Login Admin](docs/screenshot/login-admin.png)
+![Halaman Login Admin](docs/screenshot/02-login-admin.png)
 ![Dashboard Admin](docs/screenshot/03-dashboard-admin.png)
 
 ### Kelola Karyawan
-![Daftar Karyawan](docs/screenshot/list-karyawan.png)
+![Daftar Karyawan](docs/screenshot/04-list-karyawan.png)
 
 ### Laporan Presensi
-![Presensi Harian](docs/screenshot/presensi-harian.png)
-![Presensi Bulanan](docs/screenshot/presensi-bulanan.png)
+![Presensi Harian](docs/screenshot/05-presensi-harian.png)
+![Presensi Bulanan](docs/screenshot/06-presensi-bulanan.png)
 
 ## Fitur
 
