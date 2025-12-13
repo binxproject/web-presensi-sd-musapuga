@@ -2,6 +2,19 @@
 
 🔴Live Demo : [Klik disini](https://presensi-demo.free.nf/) atau https://presensi-demo.free.nf/
 
+Login admin demo :
+username : `binx`
+password : `123`
+
+NIK demo yang terdaftar untuk presensi karyawan :
+- 1001
+- 1002
+- 1003
+- 1004
+- 1005
+- 1006
+- 1007
+
 Aplikasi web sederhana untuk mengelola presensi karyawan (guru dan staf) SD Musapuga.
 Karyawan melakukan presensi dengan NIK, dan admin dapat mengelola data karyawan serta melihat laporan kehadiran harian dan bulanan.
 
