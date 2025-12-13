@@ -3,10 +3,12 @@
 🔴Live Demo : [Klik disini](https://presensi-demo.free.nf/) atau https://presensi-demo.free.nf/
 
 Login admin demo :
-username : `binx`
-password : `123`
+
+- username : `binx`
+- password : `123`
 
 NIK demo yang terdaftar untuk presensi karyawan :
+
 - 1001
 - 1002
 - 1003
