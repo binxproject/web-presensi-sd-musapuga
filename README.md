@@ -14,7 +14,7 @@ Karyawan melalakukan presensi dengan NIK, dan admin dapat mengelola data karyawa
 
 ### Login & Dashboard Admin
 ![Halaman Login Admin](docs/screenshot/login-admin.png)
-![Dashboard Admin](docs/screenshot/dashboard-admin.png)
+![Dashboard Admin](docs/screenshot/03-dashboard-admin.png)
 
 ### Kelola Karyawan
 ![Daftar Karyawan](docs/screenshot/list-karyawan.png)
