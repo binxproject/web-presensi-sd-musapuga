@@ -55,4 +55,10 @@ Karyawan melalakukan presensi dengan NIK, dan admin dapat mengelola data karyawa
   - Menambahkan keterangan (misalnya : izin pergi ke luar kota, sakit dengan surat dokter, dll)
   - Jika sudah ada presensi hari itu, data akan diupdate
 
+## Teknologi yang digunakan
+
+- PHP (native, tanpa framework)
+- MySQL
+- TailwindCSS v3.4
+
 ---
